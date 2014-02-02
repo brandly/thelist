@@ -3,7 +3,8 @@ gulp = require('gulp'),
 coffee = require('gulp-coffee'),
 concat = require('gulp-concat'),
 htmlbuild = require('gulp-htmlbuild'),
-sass = require('gulp-sass');
+sass = require('gulp-sass'),
+gutil = require('gulp-util');
 
 build = './build/'
 
@@ -11,6 +12,7 @@ gulp.task('build', function () {
     // Coffee
     gulp.src('src/scripts/**/*.coffee')
         .pipe(coffee({bare: true}))
+        .on('error', gutil.log)
         .pipe(concat('app.js'))
         .pipe(gulp.dest(build));
 
@@ -30,10 +32,16 @@ gulp.task('build', function () {
     gulp.src('src/views/*.html')
         .pipe(gulp.dest(build + 'views/'));
 
+    // SASS
     gulp.src('src/styles/**/*.scss')
         .pipe(sass())
+        .on('error', gutil.log)
         .pipe(concat('the.css'))
         .pipe(gulp.dest(build));
+
+    // Icons
+    gulp.src('src/styles/icons/*')
+        .pipe(gulp.dest(build + 'icons/'))
 });
 
 gulp.task('default', function () {

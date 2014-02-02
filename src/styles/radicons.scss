@@ -1,0 +1,44 @@
+@font-face {
+  font-family: 'Radicons';
+  src:url('icons/Radicons.eot');
+  src:url('icons/Radicons.eot?#iefix') format('embedded-opentype'),
+    url('icons/Radicons.woff') format('woff'),
+    url('icons/Radicons.ttf') format('truetype'),
+    url('icons/Radicons.svg#Radicons') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+[data-icon]:before {
+  font-family: 'Radicons';
+  content: attr(data-icon);
+  speak: none;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  -webkit-font-smoothing: antialiased;
+}
+
+.icon-settings, .icon-fast-forward, .icon-skip, .icon-pause,
+.icon-play, .icon-previous, .icon-rewind, .icon-heart {
+  font-family: 'Radicons';
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  -webkit-font-smoothing: antialiased;
+}
+.icon-settings:before { content: "\2318"; }
+.icon-fast-forward:before { content: "\290f"; }
+.icon-skip:before { content: "\2192"; }
+.icon-pause:before { content: "\25fc"; }
+.icon-play:before { content: "\25b6"; }
+.icon-previous:before { content: "\2190"; }
+.icon-rewind:before { content: "\290e"; }
+.icon-heart:before { content: "\2665"; }
+
+.icon-nudge-right {
+  position: relative;
+  left: .125em;
+}

@@ -1,7 +1,19 @@
 
 <div class="page">
-  <div class="player">
-    <img ng-if="currentTrack" src="{{getBiggerArt(currentTrack.artwork_url)}}">
+  <div class="playlist">
+    <div class="player" style="background-image: url({{getBiggerArt(currentTrack.artwork_url, '300')}})" set-bg-img="">
+      <div class="media'">
+        <a class="center prev-button">
+          <i class="icon-previous"></i>
+        </a>
+        <a class="center play-button">
+          <i class="icon-play"></i>
+        </a>
+        <a class="center skip-button">
+          <i class="icon-skip"></i>
+        </a>
+      </div>
+    </div>
     <ul ng-if="queue.length" class="queue">
       <li ng-repeat="track in queue track by $index" class="track" ng-click="setCurrent(track)">
         {{track.title}}

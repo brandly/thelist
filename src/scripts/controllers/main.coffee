@@ -24,13 +24,16 @@ angular.module('sc2')
             setSound sound
 
     setSound = (sound) ->
+        return if sound.url is $scope.sound?.url
+
         console.log 'SOUND', sound
         if $scope.sound?.playState is 1
             $scope.sound.stop()
         sound.play()
         $scope.sound = sound
 
-    $scope.getBiggerArt = (url) ->
-        url.replace 'large.jpg', 't300x300.jpg'
+    $scope.getBiggerArt = (url, size) ->
+        return '' unless url
+        url.replace 'large.jpg', "t#{size}x#{size}.jpg"
 
 ])
