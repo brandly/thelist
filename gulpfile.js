@@ -2,7 +2,8 @@ var
 gulp = require('gulp'),
 coffee = require('gulp-coffee'),
 concat = require('gulp-concat'),
-htmlbuild = require('gulp-htmlbuild');
+htmlbuild = require('gulp-htmlbuild'),
+sass = require('gulp-sass');
 
 build = './build/'
 
@@ -27,7 +28,12 @@ gulp.task('build', function () {
 
     // Views
     gulp.src('src/views/*.html')
-        .pipe(gulp.dest(build + 'views/'))
+        .pipe(gulp.dest(build + 'views/'));
+
+    gulp.src('src/styles/**/*.scss')
+        .pipe(sass())
+        .pipe(concat('the.css'))
+        .pipe(gulp.dest(build));
 });
 
 gulp.task('default', function () {

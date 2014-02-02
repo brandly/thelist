@@ -1,15 +1,18 @@
-<input type="search" ng-model="search.query">
 
-<ul ng-if="queue.length">
-  <h2>queue</h2>
-  <li ng-repeat="track in queue">{{track.title}}</li>
-</ul>
-
-<ul>
-  <li ng-repeat="track in tracks">
-    <h2>{{track.title}}</h2>
-    <h3>{{track.user.username}}</h3>
-    <img src="{{track.artwork_url}}">
-    <button ng-click="queue.push(track)">Add</button>
-  </li>
-</ul>
+<div class="page">
+  <ul ng-if="queue.length" class="queue">
+    <h2>queue</h2>
+    <li ng-repeat="track in queue">{{track.title}}</li>
+  </ul>
+  <div class="song-finder">
+    <input type="search" ng-model="search.query">
+    <ul ng-if="search.query.length">
+      <li ng-repeat="track in tracks">
+        <h2>{{track.title}}</h2>
+        <h3>{{track.user.username}}</h3>
+        <img src="{{track.artwork_url}}">
+        <button ng-click="queue.push(track)">Add</button>
+      </li>
+    </ul>
+  </div>
+</div>

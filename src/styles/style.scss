@@ -1,0 +1,19 @@
+$queue-width: 300px;
+
+body {
+    overflow-y: scroll;
+}
+
+.page {
+    width: 900px;
+    margin: 0 auto;
+}
+
+.queue {
+    float: left;
+    width: $queue-width;
+}
+
+.song-finder {
+    margin-left: $queue-width;
+}

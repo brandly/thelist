@@ -6,6 +6,9 @@ angular.module('sc2')
         query: ''
 
     $scope.$watch 'search.query', _.debounce(->
+        if $scope.search.query.length is 0
+            return $scope.tracks = []
+
         $sc.searchTracks $scope.search.query, 5
         .then (tracks) ->
             console.log 'TRACKS', tracks
