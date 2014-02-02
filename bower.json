@@ -1,0 +1,8 @@
+{
+  "name": "sc2",
+  "version": "0.0.1",
+  "dependencies": {
+    "angular": "1.2.10"
+  },
+  "private": true
+}
