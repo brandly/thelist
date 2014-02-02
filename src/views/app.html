@@ -1,14 +1,18 @@
 
 <div class="page">
-  <ul ng-if="queue.length" class="queue">
-    <h2>queue</h2>
-    <li ng-repeat="track in queue track by $index">{{track.title}}</li>
-  </ul>
+  <div class="player">
+    <img ng-if="currentTrack" src="{{getBiggerArt(currentTrack.artwork_url)}}">
+    <ul ng-if="queue.length" class="queue">
+      <li ng-repeat="track in queue track by $index" class="track" ng-click="setCurrent(track)">
+        {{track.title}}
+      </li>
+    </ul>
+  </div>
   <div class="song-finder">
     <input type="search" ng-model="search.query" placeholder="search">
     <ul ng-if="search.query.length" class="track-list">
       <li ng-repeat="track in tracks" class="track">
-        <img class="artwork" src="{{track.artwork_url}}">
+        <img class="artwork" src="{{track.artwork_url}}" ng-click="queue.push(track)">
         <div class="content" set-bg-img="{{track.waveform_url}}">
           <h3 class="title" ng-click="queue.push(track)">{{track.title}}</h3>
           <h4 class="username">{{track.user.username}}</h4>

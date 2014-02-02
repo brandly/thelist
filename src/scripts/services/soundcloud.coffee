@@ -22,5 +22,16 @@ angular.module('sc2.services')
             @getTracks
                 q: query
                 limit: limit
+
+        streamTrack: (id) ->
+            deferred = $q.defer()
+
+            SC.stream "/tracks/#{id}", (res, err) ->
+                if err?
+                    deferred.reject err
+                else
+                    deferred.resolve res
+
+            deferred.promise
     }
 ])
