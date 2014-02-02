@@ -1,12 +1,26 @@
 $queue-width: 300px;
 
+$main-font-color: #444;
+
+$track-height: 100px;
+
+* {
+    box-sizing: border-box;
+}
+
 body {
     overflow-y: scroll;
+    color: $main-font-color;
+    font-family: 'Alef', sans-serif;
+}
+
+[ng-click] {
+    cursor: pointer;
 }
 
 .page {
     width: 900px;
-    margin: 0 auto;
+    margin: 40px auto;
 }
 
 .queue {
@@ -16,4 +30,45 @@ body {
 
 .song-finder {
     margin-left: $queue-width;
+    padding-left: 20px;
+
+    input[type=search] {
+        color: $main-font-color;
+        border: none;
+        font-size: 32px;
+        margin: 20px 0;
+        padding: 8px;
+        width: 100%;
+    }
+
+    .track {
+        position: relative;
+        display: block;
+        width: 100%;
+        height: $track-height;
+        margin: 20px 0;
+
+        .artwork {
+            width: 100px;
+            float: left;
+        }
+
+        .content {
+            margin-left: 100px;
+            padding: 10px;
+            height: $track-height;
+            background-size: 100% 100%;
+
+            .title {
+                font-size: 18px;
+                margin: 10px;
+            }
+
+            .username {
+                font-size: 14px;
+                margin: 10px;
+                color: #555;
+            }
+        }
+    }
 }
