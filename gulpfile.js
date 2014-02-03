@@ -41,7 +41,10 @@ gulp.task('build', function () {
 
     // Icons
     gulp.src('src/styles/icons/*')
-        .pipe(gulp.dest(build + 'icons/'))
+        .pipe(gulp.dest(build + 'icons/'));
+
+    gulp.src('src/styles/img/*')
+        .pipe(gulp.dest(build + 'img/'))
 });
 
 gulp.task('default', function () {
