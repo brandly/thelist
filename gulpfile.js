@@ -51,3 +51,9 @@ gulp.task('default', function () {
         gulp.run('build');
     });
 });
+
+gulp.task('gh', function () {
+    gulp.run('build');
+    gulp.src('build/**/*')
+        .pipe(gulp.dest('../sc2-gh-pages/'))
+});
