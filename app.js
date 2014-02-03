@@ -43,52 +43,6 @@ angular.module('sc2').controller('MainCtrl', [
   }
 ]);
 
-angular.module('sc2.services').service('$sc', [
-  '$q', function($q) {
-    SC.initialize({
-      client_id: '7f5d27e4fc4e7c52527da9a5ebda2668'
-    });
-    return {
-      get: function(path, params) {
-        var deferred;
-        if (params == null) {
-          params = {};
-        }
-        deferred = $q.defer();
-        SC.get(path, params, function(res, err) {
-          if (err != null) {
-            return deferred.reject(err);
-          } else {
-            return deferred.resolve(res);
-          }
-        });
-        return deferred.promise;
-      },
-      getTracks: function(params) {
-        return this.get('/tracks', params);
-      },
-      searchTracks: function(query, limit) {
-        return this.getTracks({
-          q: query,
-          limit: limit
-        });
-      },
-      streamTrack: function(id) {
-        var deferred;
-        deferred = $q.defer();
-        SC.stream("/tracks/" + id, function(res, err) {
-          if (err != null) {
-            return deferred.reject(err);
-          } else {
-            return deferred.resolve(res);
-          }
-        });
-        return deferred.promise;
-      }
-    };
-  }
-]);
-
 angular.module('sc2.directives').directive('playlist', [
   '$sc', function($sc) {
     return {
@@ -154,6 +108,52 @@ angular.module('sc2.directives').directive('playlist', [
             return this._setTrack(playlist.length - 1);
           }
         };
+      }
+    };
+  }
+]);
+
+angular.module('sc2.services').service('$sc', [
+  '$q', function($q) {
+    SC.initialize({
+      client_id: '7f5d27e4fc4e7c52527da9a5ebda2668'
+    });
+    return {
+      get: function(path, params) {
+        var deferred;
+        if (params == null) {
+          params = {};
+        }
+        deferred = $q.defer();
+        SC.get(path, params, function(res, err) {
+          if (err != null) {
+            return deferred.reject(err);
+          } else {
+            return deferred.resolve(res);
+          }
+        });
+        return deferred.promise;
+      },
+      getTracks: function(params) {
+        return this.get('/tracks', params);
+      },
+      searchTracks: function(query, limit) {
+        return this.getTracks({
+          q: query,
+          limit: limit
+        });
+      },
+      streamTrack: function(id) {
+        var deferred;
+        deferred = $q.defer();
+        SC.stream("/tracks/" + id, function(res, err) {
+          if (err != null) {
+            return deferred.reject(err);
+          } else {
+            return deferred.resolve(res);
+          }
+        });
+        return deferred.promise;
       }
     };
   }
