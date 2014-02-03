@@ -56,6 +56,10 @@ body {
             font-size: 42px;
         }
 
+        .play-button {
+            left: 52%;
+        }
+
         .skip-button {
             font-size: 26px;
             left: 70%;
@@ -63,7 +67,7 @@ body {
 
         .prev-button {
             font-size: 26px;
-            left: 27%;
+            left: 30%;
         }
     }
 
@@ -76,6 +80,10 @@ body {
         text-overflow: ellipsis;
         white-space: nowrap;
         position: relative;
+    }
+
+    .error {
+        color: red;
     }
 
     .track:first-child {

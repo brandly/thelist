@@ -18,7 +18,7 @@
       </div>
     </div>
     <ul class="queue">
-      <li ng-repeat="track in playlist track by $index" class="track" ng-click="player.playTrack($index)">
+      <li ng-repeat="track in playlist track by $index" class="track" ng-click="player.playTrack($index)" ng-class="{error: track.error}">
         {{track.title}}
         <i ng-show="$index === player.current.index" class="icon-play"></i>
       </li>
