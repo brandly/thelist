@@ -1,7 +1,7 @@
 
 <div class="page" playlist>
   <div class="playlist">
-    <div class="player" style="background-image: url({{getBiggerArt(player.current.track.artwork_url, '300')}})" set-bg-img="">
+    <div class="player" style="background-image: url({{getBiggerArt(player.current.track.artwork_url, '300')}})">
       <div class="media'" ng-show="player.current.sound">
         <a class="center prev-button" ng-click="player.prev()">
           <i class="icon-previous"></i>
@@ -29,7 +29,7 @@
     <ul class="track-list">
       <li ng-repeat="track in tracks" class="track">
         <img class="artwork" src="{{track.artwork_url}}" ng-click="playlist.push(track)">
-        <div class="content" set-bg-img="{{track.waveform_url}}">
+        <div class="content" style="background-image: url({{track.waveform_url}})">
           <h3 class="title" ng-click="playlist.push(track)">{{track.title}}</h3>
           <h4 class="username">{{track.user.username}}</h4>
         </div>
