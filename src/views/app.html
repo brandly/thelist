@@ -1,32 +1,36 @@
 
-<div class="page">
+<div class="page" playlist>
   <div class="playlist">
-    <div class="player" style="background-image: url({{getBiggerArt(currentTrack.artwork_url, '300')}})" set-bg-img="">
-      <div class="media'">
-        <a class="center prev-button">
+    <div class="player" style="background-image: url({{getBiggerArt(player.current.track.artwork_url, '300')}})" set-bg-img="">
+      <div class="media'" ng-show="player.current.sound">
+        <a class="center prev-button" ng-click="player.prev()">
           <i class="icon-previous"></i>
         </a>
-        <a class="center play-button">
+        <a class="center play-button" ng-click="player.play()" ng-show="player.current.sound.paused">
           <i class="icon-play"></i>
         </a>
-        <a class="center skip-button">
+        <a class="center pause-button" ng-click="player.pause()" ng-hide="player.current.sound.paused">
+          <i class="icon-pause"></i>
+        </a>
+        <a class="center skip-button" ng-click="player.skip()">
           <i class="icon-skip"></i>
         </a>
       </div>
     </div>
-    <ul ng-if="queue.length" class="queue">
-      <li ng-repeat="track in queue track by $index" class="track" ng-click="setCurrent(track)">
+    <ul class="queue">
+      <li ng-repeat="track in playlist track by $index" class="track" ng-click="player.playTrack($index)">
         {{track.title}}
+        <i ng-show="$index === player.current.index" class="icon-play"></i>
       </li>
     </ul>
   </div>
   <div class="song-finder">
     <input type="search" ng-model="search.query" placeholder="search">
-    <ul ng-if="search.query.length" class="track-list">
+    <ul class="track-list">
       <li ng-repeat="track in tracks" class="track">
-        <img class="artwork" src="{{track.artwork_url}}" ng-click="queue.push(track)">
+        <img class="artwork" src="{{track.artwork_url}}" ng-click="playlist.push(track)">
         <div class="content" set-bg-img="{{track.waveform_url}}">
-          <h3 class="title" ng-click="queue.push(track)">{{track.title}}</h3>
+          <h3 class="title" ng-click="playlist.push(track)">{{track.title}}</h3>
           <h4 class="username">{{track.user.username}}</h4>
         </div>
       </li>
