@@ -74,6 +74,7 @@ angular.module('sc2.directives').directive('playlist', [
             return $sc.streamTrack(this.current.track.id).then((function(_this) {
               return function(sound) {
                 console.log('GOT SOUND', sound);
+                sound.play();
                 return _this.current.sound = sound;
               };
             })(this), function(error) {
