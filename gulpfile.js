@@ -4,9 +4,9 @@ coffee = require('gulp-coffee'),
 concat = require('gulp-concat'),
 htmlbuild = require('gulp-htmlbuild'),
 sass = require('gulp-sass'),
-gutil = require('gulp-util');
+gutil = require('gulp-util'),
 
-build = './build/'
+build = './build/';
 
 gulp.task('build', function () {
     // Coffee
