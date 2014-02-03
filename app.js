@@ -60,13 +60,13 @@ angular.module('sc2.directives').directive('playlist', [
             }
           },
           playTrack: function(index) {
+            return this._setTrack(index);
+          },
+          _setTrack: function(index) {
             var _ref;
             if ((_ref = this.current.sound) != null) {
               _ref.pause();
             }
-            return this._setTrack(index);
-          },
-          _setTrack: function(index) {
             this.current = {
               track: playlist[index],
               index: index
@@ -74,20 +74,22 @@ angular.module('sc2.directives').directive('playlist', [
             return $sc.streamTrack(this.current.track.id).then((function(_this) {
               return function(sound) {
                 console.log('GOT SOUND', sound);
-                sound.play();
-                return _this.current.sound = sound;
+                if (_this.current.track === playlist[index]) {
+                  sound.play();
+                  return _this.current.sound = sound;
+                }
               };
             })(this), function(error) {
               return playlist[index].error = error;
             });
           },
           pause: function() {
-            return this.current.sound.pause();
+            var _ref;
+            return (_ref = this.current.sound) != null ? _ref.pause() : void 0;
           },
           skip: function() {
             var next;
             if (this.current.sound != null) {
-              this.current.sound.pause();
               next = this.current.index + 1;
               if (next !== playlist.length) {
                 return this._setTrack(next);
@@ -98,7 +100,6 @@ angular.module('sc2.directives').directive('playlist', [
           prev: function() {
             var prev;
             if (this.current.sound != null) {
-              this.current.sound.pause();
               prev = this.current.index - 1;
               if (prev >= 0) {
                 return this._setTrack(prev);
@@ -107,16 +108,6 @@ angular.module('sc2.directives').directive('playlist', [
             return this._setTrack(playlist.length - 1);
           }
         };
-      }
-    };
-  }
-]);
-
-angular.module('sc2.directives').directive('setBgImg', [
-  function() {
-    return {
-      link: function(scope, element, attrs) {
-        return element.css('background-image', "url('" + attrs.setBgImg + "')");
       }
     };
   }
