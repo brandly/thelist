@@ -161,6 +161,11 @@ body {
                 position: absolute;
                 bottom: 10px;
                 right: 10px;
+                opacity: .6;
+
+                &:hover {
+                    opacity: .8;
+                }
             }
         }
     }
@@ -178,6 +183,11 @@ footer {
         position: relative;
         float: left;
         width: 160px;
+        opacity: .6;
+
+        &:hover {
+            opacity: .8;
+        }
     }
 
     .github {
