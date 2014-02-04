@@ -6,7 +6,6 @@ angular.module('sc2.directives')
             element.on 'click', (e) ->
                 progress = e.offsetX / e.target?.offsetWidth
                 if progress
-                    console.log 'PROGRESS', progress
                     scope.player.seek progress
     }
 ])

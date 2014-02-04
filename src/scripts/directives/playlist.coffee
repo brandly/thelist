@@ -27,6 +27,8 @@ angular.module('sc2.directives')
                             # update @current.position every second
                             @current.interval = $interval =>
                                 @current.position = @current.sound.position
+                                if @current.sound.position is @current.sound.duration
+                                    @next()
                             , 1000
                     , (error) ->
                         playlist[index].error = error
@@ -34,7 +36,7 @@ angular.module('sc2.directives')
                 pause: ->
                     @current.sound?.pause()
 
-                skip: ->
+                next: ->
                     if @current.sound?
                         next = @current.index + 1
                         unless next is playlist.length
