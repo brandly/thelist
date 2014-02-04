@@ -137,7 +137,8 @@ body {
     height: 10px;
     width: 100%;
     position: absolute;
-    bottom: 0; }
+    bottom: 0;
+    cursor: pointer; }
     .playlist .seek .progress {
       height: 100%;
       background-color: #444;
