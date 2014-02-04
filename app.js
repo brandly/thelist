@@ -107,8 +107,31 @@ angular.module('sc2.directives').directive('playlist', [
               }
             }
             return this.playTrack(playlist.length - 1);
+          },
+          seek: function(progress) {
+            var position, _ref;
+            position = progress * this.current.sound.duration;
+            this.current.position = position;
+            return (_ref = this.current.sound) != null ? _ref.setPosition(position) : void 0;
           }
         };
+      }
+    };
+  }
+]);
+
+angular.module('sc2.directives').directive('seek', [
+  function() {
+    return {
+      link: function(scope, element, attrs) {
+        return element.on('click', function(e) {
+          var progress, _ref;
+          progress = e.offsetX / ((_ref = e.target) != null ? _ref.offsetWidth : void 0);
+          if (progress) {
+            console.log('PROGRESS', progress);
+            return scope.player.seek(progress);
+          }
+        });
       }
     };
   }

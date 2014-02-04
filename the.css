@@ -135,9 +135,13 @@ body {
       left: 30%; }
   .playlist .seek {
     height: 10px;
-    background-color: #444;
+    width: 100%;
     position: absolute;
     bottom: 0; }
+    .playlist .seek .progress {
+      height: 100%;
+      background-color: #444;
+      pointer-events: none; }
   .playlist .queue {
     margin-top: 10px; }
   .playlist .track {
