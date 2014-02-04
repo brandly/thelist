@@ -28,7 +28,7 @@
     <input type="search" ng-model="search.query" placeholder="search">
     <ul class="track-list">
       <li ng-repeat="track in tracks" class="track">
-        <img class="artwork" src="{{track.artwork_url}}" ng-click="playlist.push(track)">
+        <img class="artwork" ng-src="{{track.artwork_url}}" ng-click="playlist.push(track)">
         <div class="content" style="background-image: url({{track.waveform_url}})">
           <h3 class="title" ng-click="playlist.push(track)">{{track.title}}</h3>
           <h4 class="username">{{track.user.username}}</h4>
