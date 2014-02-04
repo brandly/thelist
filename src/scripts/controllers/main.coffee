@@ -3,7 +3,7 @@ angular.module('sc2')
 .controller('MainCtrl', ['$scope', '$sc', ($scope, $sc) ->
     $scope.tracks = []
     $scope.search =
-        query: 'flume'
+        query: ''
 
     $scope.$watch 'search.query', _.debounce(->
         if $scope.search.query.length is 0
