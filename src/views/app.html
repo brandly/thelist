@@ -16,7 +16,9 @@
           <i class="icon-skip"></i>
         </a>
       </div>
-      <div class="seek" ng-show="player.current.position" style="width: {{player.current.position / player.current.sound.duration * 100}}%;"></div>
+      <div class="seek" seek ng-show="player.current.position">
+        <div class="progress" style="width: {{player.current.position / player.current.sound.duration * 100}}%;"></div>
+      </div>
     </div>
     <ul class="queue">
       <li ng-repeat="track in playlist track by $index" class="track" ng-click="player.playTrack($index)" ng-class="{error: track.error}">

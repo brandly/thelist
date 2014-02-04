@@ -49,5 +49,10 @@ angular.module('sc2.directives')
                             return @playTrack prev
 
                     @playTrack playlist.length - 1
+
+                seek: (progress) ->
+                    position = progress * @current.sound.duration
+                    @current.position = position
+                    @current.sound?.setPosition position
     }
 ])

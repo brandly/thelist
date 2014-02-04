@@ -74,9 +74,15 @@ body {
 
     .seek {
         height: 10px;
-        background-color: $main-font-color;
+        width: 100%;
         position: absolute;
         bottom: 0;
+
+        .progress {
+            height: 100%;
+            background-color: $main-font-color;
+            pointer-events: none; // let them pass through to .seek
+        }
     }
 
     .queue {
