@@ -23,7 +23,7 @@ angular.module('sc2').controller('MainCtrl', [
   '$scope', '$sc', function($scope, $sc) {
     $scope.tracks = [];
     $scope.search = {
-      query: 'flume'
+      query: ''
     };
     $scope.$watch('search.query', _.debounce(function() {
       if ($scope.search.query.length === 0) {
