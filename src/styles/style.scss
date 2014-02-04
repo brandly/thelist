@@ -34,6 +34,7 @@ body {
         height: $player-height;
         width: $player-height;
         position: relative;
+        border: 1px solid #eee;
 
         .media {
             width: 100%;
@@ -87,7 +88,7 @@ body {
     }
 
     .queue {
-        margin-top: 10px;
+        margin: 20px 0;
     }
 
     .track {
@@ -126,6 +127,8 @@ body {
         margin: 20px 0;
         padding: 8px;
         width: 100%;
+        outline: none;
+        border-bottom: 2px solid #ccc;
     }
 
     .track {
@@ -178,23 +181,16 @@ footer {
     position: relative;
     margin: 0 auto;
     padding: 10px;
+    overflow: auto;
+    zoom: 1;
 
-    .contain {
-        position: relative;
-        float: left;
-        width: 160px;
+    .logo {
+        display: inline-block;
         opacity: .6;
+        padding: 5px;
 
         &:hover {
             opacity: .8;
         }
-    }
-
-    .github {
-        float: right;
-    }
-
-    .soundcloud {
-        float: left;
     }
 }
