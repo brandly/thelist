@@ -1,10 +1,10 @@
 $queue-width: 300px;
 
 $main-font-color: #444;
-
 $track-height: 100px;
-
 $player-height: 300px;
+$page-width: 900px;
+$soft-border: 1px solid #ddd;
 
 * {
     box-sizing: border-box;
@@ -21,7 +21,8 @@ body {
 }
 
 .page {
-    width: 900px;
+    min-height: 500px;
+    width: $page-width;
     margin: 40px auto;
 }
 
@@ -75,7 +76,7 @@ body {
         font-size: 16px;
         line-height: 32px;
         padding: 0 10px;
-        border-bottom: 1px solid #ddd;
+        border-bottom: $soft-border;
         overflow-x: hidden;
         text-overflow: ellipsis;
         white-space: nowrap;
@@ -87,7 +88,7 @@ body {
     }
 
     .track:first-child {
-        border-top: 1px solid #ddd;
+        border-top: $soft-border;
     }
 
     .icon-play {
@@ -144,5 +145,28 @@ body {
                 right: 10px;
             }
         }
+    }
+}
+
+footer {
+    border-top: $soft-border;
+    min-height: 100px;
+    width: $page-width;
+    position: relative;
+    margin: 0 auto;
+    padding: 10px;
+
+    .contain {
+        position: relative;
+        float: left;
+        width: 160px;
+    }
+
+    .github {
+        float: right;
+    }
+
+    .soundcloud {
+        float: left;
     }
 }
