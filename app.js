@@ -76,7 +76,10 @@ angular.module('sc2.directives').directive('playlist', [
                   sound.play();
                   _this.current.sound = sound;
                   return _this.current.interval = $interval(function() {
-                    return _this.current.position = _this.current.sound.position;
+                    _this.current.position = _this.current.sound.position;
+                    if (_this.current.sound.position === _this.current.sound.duration) {
+                      return _this.next();
+                    }
                   }, 1000);
                 }
               };
@@ -88,7 +91,7 @@ angular.module('sc2.directives').directive('playlist', [
             var _ref;
             return (_ref = this.current.sound) != null ? _ref.pause() : void 0;
           },
-          skip: function() {
+          next: function() {
             var next;
             if (this.current.sound != null) {
               next = this.current.index + 1;
@@ -128,7 +131,6 @@ angular.module('sc2.directives').directive('seek', [
           var progress, _ref;
           progress = e.offsetX / ((_ref = e.target) != null ? _ref.offsetWidth : void 0);
           if (progress) {
-            console.log('PROGRESS', progress);
             return scope.player.seek(progress);
           }
         });
