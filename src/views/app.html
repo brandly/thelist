@@ -25,7 +25,7 @@
     </ul>
   </div>
   <div class="song-finder">
-    <input type="search" ng-model="search.query" placeholder="search">
+    <input type="search" ng-model="search.query" placeholder="search" autofocus>
     <ul class="track-list">
       <li ng-repeat="track in tracks" class="track">
         <img class="artwork" ng-src="{{track.artwork_url}}" ng-click="playlist.push(track)">
