@@ -10,12 +10,9 @@ angular.module('sc2.directives')
                     if @current.sound?.paused
                         @current.sound.play()
                     else if playlist.length
-                        @_setTrack 0
+                        @playTrack 0
 
                 playTrack: (index) ->
-                    @_setTrack index
-
-                _setTrack: (index) ->
                     @current.sound?.pause()
                     @current =
                         track: playlist[index]
@@ -35,16 +32,16 @@ angular.module('sc2.directives')
                     if @current.sound?
                         next = @current.index + 1
                         unless next is playlist.length
-                            return @_setTrack next
+                            return @playTrack next
 
-                    @_setTrack 0
+                    @playTrack 0
 
                 prev: ->
                     if @current.sound?
                         prev = @current.index - 1
                         if prev >= 0
-                            return @_setTrack prev
+                            return @playTrack prev
 
-                    @_setTrack playlist.length - 1
+                    @playTrack playlist.length - 1
     }
 ])
