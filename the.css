@@ -100,6 +100,7 @@ body {
   cursor: pointer; }
 
 .page {
+  min-height: 500px;
   width: 900px;
   margin: 40px auto; }
 
@@ -132,6 +133,13 @@ body {
     .playlist .player .prev-button {
       font-size: 26px;
       left: 30%; }
+  .playlist .seek {
+    height: 10px;
+    background-color: #444;
+    position: absolute;
+    bottom: 0; }
+  .playlist .queue {
+    margin-top: 10px; }
   .playlist .track {
     font-size: 16px;
     line-height: 32px;
@@ -184,3 +192,19 @@ body {
         position: absolute;
         bottom: 10px;
         right: 10px; }
+
+footer {
+  border-top: 1px solid #ddd;
+  min-height: 100px;
+  width: 900px;
+  position: relative;
+  margin: 0 auto;
+  padding: 10px; }
+  footer .contain {
+    position: relative;
+    float: left;
+    width: 160px; }
+  footer .github {
+    float: right; }
+  footer .soundcloud {
+    float: left; }

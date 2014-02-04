@@ -44,7 +44,7 @@ angular.module('sc2').controller('MainCtrl', [
 ]);
 
 angular.module('sc2.directives').directive('playlist', [
-  '$sc', function($sc) {
+  '$sc', '$interval', function($sc, $interval) {
     return {
       link: function(scope, element, attrs) {
         var playlist;
@@ -56,17 +56,15 @@ angular.module('sc2.directives').directive('playlist', [
             if ((_ref = this.current.sound) != null ? _ref.paused : void 0) {
               return this.current.sound.play();
             } else if (playlist.length) {
-              return this._setTrack(0);
+              return this.playTrack(0);
             }
           },
           playTrack: function(index) {
-            return this._setTrack(index);
-          },
-          _setTrack: function(index) {
             var _ref;
             if ((_ref = this.current.sound) != null) {
               _ref.pause();
             }
+            $interval.cancel(this.current.interval);
             this.current = {
               track: playlist[index],
               index: index
@@ -76,7 +74,10 @@ angular.module('sc2.directives').directive('playlist', [
                 console.log('GOT SOUND', sound);
                 if (_this.current.track === playlist[index]) {
                   sound.play();
-                  return _this.current.sound = sound;
+                  _this.current.sound = sound;
+                  return _this.current.interval = $interval(function() {
+                    return _this.current.position = _this.current.sound.position;
+                  }, 1000);
                 }
               };
             })(this), function(error) {
@@ -92,20 +93,20 @@ angular.module('sc2.directives').directive('playlist', [
             if (this.current.sound != null) {
               next = this.current.index + 1;
               if (next !== playlist.length) {
-                return this._setTrack(next);
+                return this.playTrack(next);
               }
             }
-            return this._setTrack(0);
+            return this.playTrack(0);
           },
           prev: function() {
             var prev;
             if (this.current.sound != null) {
               prev = this.current.index - 1;
               if (prev >= 0) {
-                return this._setTrack(prev);
+                return this.playTrack(prev);
               }
             }
-            return this._setTrack(playlist.length - 1);
+            return this.playTrack(playlist.length - 1);
           }
         };
       }

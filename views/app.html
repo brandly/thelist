@@ -16,6 +16,7 @@
           <i class="icon-skip"></i>
         </a>
       </div>
+      <div class="seek" ng-show="player.current.position" style="width: {{player.current.position / player.current.sound.duration * 100}}%;"></div>
     </div>
     <ul class="queue">
       <li ng-repeat="track in playlist track by $index" class="track" ng-click="player.playTrack($index)" ng-class="{error: track.error}">
@@ -25,10 +26,10 @@
     </ul>
   </div>
   <div class="song-finder">
-    <input type="search" ng-model="search.query" placeholder="search">
+    <input type="search" ng-model="search.query" placeholder="search" autofocus>
     <ul class="track-list">
       <li ng-repeat="track in tracks" class="track">
-        <img class="artwork" src="{{track.artwork_url}}" ng-click="playlist.push(track)">
+        <img class="artwork" ng-src="{{track.artwork_url}}" ng-click="playlist.push(track)">
         <div class="content" style="background-image: url({{track.waveform_url}})">
           <h3 class="title" ng-click="playlist.push(track)">{{track.title}}</h3>
           <h4 class="username">{{track.user.username}}</h4>
