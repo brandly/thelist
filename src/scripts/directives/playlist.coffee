@@ -1,6 +1,6 @@
 angular.module('sc2.directives')
 
-.directive('playlist', ['$sc', ($sc) ->
+.directive('playlist', ['$sc', '$interval', ($sc, $interval) ->
     return {
         link: (scope, element, attrs) ->
             scope.playlist = playlist = []
@@ -14,6 +14,7 @@ angular.module('sc2.directives')
 
                 playTrack: (index) ->
                     @current.sound?.pause()
+                    $interval.cancel @current.interval
                     @current =
                         track: playlist[index]
                         index: index
@@ -22,6 +23,11 @@ angular.module('sc2.directives')
                         if @current.track is playlist[index]
                             sound.play()
                             @current.sound = sound
+
+                            # update @current.position every second
+                            @current.interval = $interval =>
+                                @current.position = @current.sound.position
+                            , 1000
                     , (error) ->
                         playlist[index].error = error
 

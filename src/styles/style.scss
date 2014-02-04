@@ -72,6 +72,17 @@ body {
         }
     }
 
+    .seek {
+        height: 10px;
+        background-color: $main-font-color;
+        position: absolute;
+        bottom: 0;
+    }
+
+    .queue {
+        margin-top: 10px;
+    }
+
     .track {
         font-size: 16px;
         line-height: 32px;
