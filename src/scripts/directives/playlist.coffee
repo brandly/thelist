@@ -28,6 +28,9 @@ angular.module('sc2.directives')
                             @current.interval = $interval =>
                                 @current.position = @current.sound.position
                                 if @current.sound.position is @current.sound.duration
+                                    console.log 'FAILS', @current.sound.failures
+                                    console.log 'DURATION', @current.sound.duration
+                                    console.log 'POSITION', @current.sound.position
                                     @next()
                             , 1000
                     , (error) ->
