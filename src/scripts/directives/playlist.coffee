@@ -16,8 +16,7 @@ angular.module('sc2.directives')
                     @current.sound?.togglePause()
 
                 playTrack: (index) ->
-                    @current.sound?.pause()
-                    $interval.cancel @current.interval
+                    @stop()
                     @current =
                         track: playlist[index]
                         index: index
@@ -62,5 +61,10 @@ angular.module('sc2.directives')
                     position = progress * @current.sound.duration
                     @current.position = position
                     @current.sound?.setPosition position
+
+                stop: ->
+                    $interval.cancel @current.interval
+                    @current.sound?.stop()
+                    @current = {}
     }
 ])
