@@ -12,6 +12,9 @@ angular.module('sc2.directives')
                     else if playlist.length
                         @playTrack 0
 
+                togglePause: ->
+                    @current.sound?.togglePause()
+
                 playTrack: (index) ->
                     @current.sound?.pause()
                     $interval.cancel @current.interval
