@@ -7,7 +7,8 @@ angular.module('sc2')
 
     $scope.$watch 'search.query', _.debounce(->
         if $scope.search.query.length is 0
-            return $scope.tracks = []
+            return $scope.$apply ->
+                $scope.tracks = []
 
         $sc.searchTracks $scope.search.query, 10
         .then (tracks) ->
