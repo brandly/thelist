@@ -24,6 +24,7 @@ angular.module('sc2')
     $scope.addTrackFromLink = (link) ->
         $sc.resolve(link).then (track) ->
             $scope.playlist.push track
+            $scope.search.url = ''
 
     Mousetrap.bind 'space', (e) ->
         e.preventDefault()

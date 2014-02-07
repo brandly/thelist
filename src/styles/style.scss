@@ -114,6 +114,19 @@ body {
         position: absolute;
         right: 0;
     }
+
+    .track-from-link {
+        input[type=submit] {
+            display: none;
+        }
+
+        input[type=text] {
+            border: 0;
+            outline: none;
+            color: $main-font-color;
+            width: 100%;
+        }
+    }
 }
 
 .song-finder {
