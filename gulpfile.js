@@ -6,6 +6,7 @@ htmlbuild = require('gulp-htmlbuild'),
 sass = require('gulp-sass'),
 gutil = require('gulp-util'),
 uglify = require('gulp-uglify'),
+minify = require('gulp-minify-css'),
 
 build = './build/';
 
@@ -39,6 +40,7 @@ gulp.task('build', function () {
     gulp.src('src/styles/**/*.scss')
         .pipe(sass())
         .on('error', gutil.log)
+        .pipe(minify())
         .pipe(concat('the.css'))
         .pipe(gulp.dest(build));
 
