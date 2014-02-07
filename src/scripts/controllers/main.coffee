@@ -4,6 +4,7 @@ angular.module('sc2')
     $scope.tracks = []
     $scope.search =
         query: ''
+        url: ''
 
     $scope.$watch 'search.query', _.debounce(->
         if $scope.search.query.length is 0
@@ -19,6 +20,10 @@ angular.module('sc2')
     $scope.getBiggerArt = (url, size) ->
         return '' unless url
         url.replace 'large.jpg', "t#{size}x#{size}.jpg"
+
+    $scope.addTrackFromLink = (link) ->
+        $sc.resolve(link).then (track) ->
+            $scope.playlist.push track
 
     Mousetrap.bind 'space', (e) ->
         e.preventDefault()
