@@ -21,7 +21,7 @@
       </div>
     </div>
     <ul class="queue">
-      <li ng-repeat="track in playlist track by $index" class="track" ng-click="player.playTrack($index)" ng-class="{error: track.error}">
+      <li ng-repeat="track in playlist track by $index" title="Play track" class="track" ng-click="player.playTrack($index)" ng-class="{error: track.error}">
         {{track.title}}
         <i ng-show="$index === player.current.index && !player.current.sound.paused" class="icon-play"></i>
       </li>
@@ -31,11 +31,11 @@
     <input type="search" ng-model="search.query" placeholder="search" autofocus>
     <ul class="track-list">
       <li ng-repeat="track in tracks" class="track">
-        <img class="artwork" ng-src="{{track.artwork_url}}" ng-click="playlist.push(track)">
+        <img class="artwork" title="Add to the list" ng-src="{{track.artwork_url}}" ng-click="playlist.push(track)">
         <div class="content" ng-class="{'no-art': !track.artwork_url}" style="background-image: url({{track.waveform_url}})">
-          <h3 class="title" ng-click="playlist.push(track)">{{track.title}}</h3>
-          <h4 class="username">{{track.user.username}}</h4>
-          <a class="link" href="{{track.permalink_url}}" target="_blank"><img src="img/soundcloud_logo_black.png" alt=""></a>
+          <h3 class="title" title="Add to the list" ng-click="playlist.push(track)">{{track.title}}</h3>
+          <a class="username" href="{{track.user.permalink_url}}" title="View user on SoundCloud" target="_blank">{{track.user.username}}</a>
+          <a class="link" href="{{track.permalink_url}}"title="View track on SoundCloud" target="_blank"><img src="img/soundcloud_logo_black.png"></a>
         </div>
       </li>
     </ul>
