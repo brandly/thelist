@@ -22,19 +22,21 @@ angular.module('sc2.directives')
                         index: index
                     $sc.streamTrack(@current.track.id).then (sound) =>
                         console.log 'GOT SOUND', sound
-                        if @current.track is playlist[index]
-                            sound.play()
-                            @current.sound = sound
+                        # maybe we've moved on already
+                        return unless @current.track is playlist[index]
 
-                            # update @current.position every second
-                            @current.interval = $interval =>
-                                @current.position = @current.sound.position
-                                if @current.sound.position is @current.sound.duration
-                                    console.log 'FAILS', @current.sound.failures
-                                    console.log 'DURATION', @current.sound.duration
-                                    console.log 'POSITION', @current.sound.position
-                                    @next()
-                            , 1000
+                        sound.play()
+                        @current.sound = sound
+
+                        # update @current.position every second
+                        @current.interval = $interval =>
+                            @current.position = @current.sound.position
+                            if @current.sound.position is @current.sound.duration
+                                console.log 'FAILS', @current.sound.failures
+                                console.log 'DURATION', @current.sound.duration
+                                console.log 'POSITION', @current.sound.position
+                                @next()
+                        , 1000
                     , (error) ->
                         playlist[index].error = error
 
@@ -44,7 +46,7 @@ angular.module('sc2.directives')
                 next: ->
                     if @current.sound?
                         next = @current.index + 1
-                        unless next is playlist.length
+                        if next < playlist.length
                             return @playTrack next
 
                     @playTrack 0
