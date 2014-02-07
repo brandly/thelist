@@ -33,5 +33,16 @@ angular.module('sc2.services')
                     deferred.resolve res
 
             deferred.promise
+
+        resolve: (url) ->
+            deferred = $q.defer()
+
+            SC.get '/resolve', {url}, (res, err) ->
+                if err?
+                    deferred.reject err
+                else
+                    deferred.resolve res
+
+            deferred.promise
     }
 ])
