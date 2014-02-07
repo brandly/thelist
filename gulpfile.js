@@ -15,7 +15,7 @@ gulp.task('build', function () {
     gulp.src('src/scripts/**/*.coffee')
         .pipe(coffee({bare: true}))
         .on('error', gutil.log)
-        .pipe(uglify())
+        .pipe(gutil.env.gh ? uglify() : gutil.noop())
         .pipe(concat('app.js'))
         .pipe(gulp.dest(build));
 
@@ -24,7 +24,7 @@ gulp.task('build', function () {
         .pipe(htmlbuild({
             js: function (files, callback) {
                 gulp.src(files)
-                    .pipe(uglify())
+                    .pipe(gutil.env.gh ? uglify() : gutil.noop())
                     .pipe(concat('lib.js'))
                     .pipe(gulp.dest(build));
                 callback(null, ['lib.js']);
@@ -40,7 +40,7 @@ gulp.task('build', function () {
     gulp.src('src/styles/**/*.scss')
         .pipe(sass())
         .on('error', gutil.log)
-        .pipe(minify())
+        .pipe(gutil.env.gh ? minify() : gutil.noop())
         .pipe(concat('the.css'))
         .pipe(gulp.dest(build));
 
@@ -61,6 +61,7 @@ gulp.task('default', function () {
 });
 
 gulp.task('gh', function () {
+    gutil.env.gh = true;
     gulp.run('build');
     gulp.src('build/**/*')
         .pipe(gulp.dest('../sc2-gh-pages/'))
