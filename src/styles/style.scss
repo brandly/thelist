@@ -121,7 +121,7 @@ body {
     padding-left: 20px;
 
     input[type=search] {
-        color: $main-font-color;
+        color: lighten($main-font-color, 10%);
         border: none;
         font-size: 32px;
         margin: 20px 0;
