@@ -5,6 +5,7 @@ concat = require('gulp-concat'),
 htmlbuild = require('gulp-htmlbuild'),
 sass = require('gulp-sass'),
 gutil = require('gulp-util'),
+uglify = require('gulp-uglify'),
 
 build = './build/';
 
@@ -13,6 +14,7 @@ gulp.task('build', function () {
     gulp.src('src/scripts/**/*.coffee')
         .pipe(coffee({bare: true}))
         .on('error', gutil.log)
+        .pipe(uglify())
         .pipe(concat('app.js'))
         .pipe(gulp.dest(build));
 
@@ -21,6 +23,7 @@ gulp.task('build', function () {
         .pipe(htmlbuild({
             js: function (files, callback) {
                 gulp.src(files)
+                    .pipe(uglify())
                     .pipe(concat('lib.js'))
                     .pipe(gulp.dest(build));
                 callback(null, ['lib.js']);
