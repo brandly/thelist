@@ -11,6 +11,10 @@ minify = require('gulp-minify-css'),
 build = './build/';
 
 gulp.task('build', function () {
+    if (gutil.env.gh) {
+        build = '../sc2-gh-pages/'
+    }
+
     // Coffee
     gulp.src('src/scripts/**/*.coffee')
         .pipe(coffee({bare: true}))
@@ -55,14 +59,9 @@ gulp.task('build', function () {
 gulp.task('default', function () {
     gulp.run('build');
 
-    gulp.watch(['src/**'], function () {
-        gulp.run('build');
-    });
-});
-
-gulp.task('gh', function () {
-    gutil.env.gh = true;
-    gulp.run('build');
-    gulp.src('build/**/*')
-        .pipe(gulp.dest('../sc2-gh-pages/'));
+    if (!gutil.env.gh) {
+        gulp.watch(['src/**'], function () {
+            gulp.run('build');
+        });
+    }
 });
