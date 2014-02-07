@@ -49,7 +49,7 @@ gulp.task('build', function () {
         .pipe(gulp.dest(build + 'icons/'));
 
     gulp.src('src/styles/img/*')
-        .pipe(gulp.dest(build + 'img/'))
+        .pipe(gulp.dest(build + 'img/'));
 });
 
 gulp.task('default', function () {
@@ -64,5 +64,5 @@ gulp.task('gh', function () {
     gutil.env.gh = true;
     gulp.run('build');
     gulp.src('build/**/*')
-        .pipe(gulp.dest('../sc2-gh-pages/'))
+        .pipe(gulp.dest('../sc2-gh-pages/'));
 });
