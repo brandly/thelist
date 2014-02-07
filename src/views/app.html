@@ -32,7 +32,7 @@
     <ul class="track-list">
       <li ng-repeat="track in tracks" class="track">
         <img class="artwork" ng-src="{{track.artwork_url}}" ng-click="playlist.push(track)">
-        <div class="content" style="background-image: url({{track.waveform_url}})">
+        <div class="content" ng-class="{'no-art': !track.artwork_url}" style="background-image: url({{track.waveform_url}})">
           <h3 class="title" ng-click="playlist.push(track)">{{track.title}}</h3>
           <h4 class="username">{{track.user.username}}</h4>
           <a class="link" href="{{track.permalink_url}}" target="_blank"><img src="img/soundcloud_logo_black.png" alt=""></a>
