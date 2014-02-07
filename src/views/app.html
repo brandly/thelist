@@ -31,7 +31,7 @@
     <input type="search" ng-model="search.query" placeholder="search" autofocus>
     <ul class="track-list">
       <li ng-repeat="track in tracks" class="track">
-        <img class="artwork" title="Add to the list" ng-src="{{track.artwork_url}}" ng-click="playlist.push(track)">
+        <img ng-if="track.artwork_url" class="artwork" title="Add to the list" ng-src="{{track.artwork_url}}" ng-click="playlist.push(track)">
         <div class="content" ng-class="{'no-art': !track.artwork_url}" style="background-image: url({{track.waveform_url}})">
           <h3 class="title" title="Add to the list" ng-click="playlist.push(track)">{{track.title}}</h3>
           <a class="username" href="{{track.user.permalink_url}}" title="View user on SoundCloud" target="_blank">{{track.user.username}}</a>
