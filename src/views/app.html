@@ -1,18 +1,19 @@
 
 <div class="page" playlist>
   <div class="playlist">
-    <div class="player" style="background-image: url({{player.current.track.artwork_url | resizeArt:'300'}})">
+    <div class="player">
+      <img ng-src="{{player.current.track.artwork_url | resizeArt:'300'}}" alt="">
       <div class="media'" ng-show="player.current.sound">
-        <a class="center prev-button" ng-click="player.prev()">
+        <a class="center button prev-button" ng-click="player.prev()">
           <i class="icon-previous"></i>
         </a>
-        <a class="center play-button" ng-click="player.play()" ng-show="player.current.sound.paused">
+        <a class="center button play-button" ng-click="player.play()" ng-show="player.current.sound.paused">
           <i class="icon-play"></i>
         </a>
-        <a class="center pause-button" ng-click="player.pause()" ng-hide="player.current.sound.paused">
+        <a class="center button pause-button" ng-click="player.pause()" ng-hide="player.current.sound.paused">
           <i class="icon-pause"></i>
         </a>
-        <a class="center skip-button" ng-click="player.next()">
+        <a class="center button skip-button" ng-click="player.next()">
           <i class="icon-skip"></i>
         </a>
       </div>
