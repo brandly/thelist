@@ -17,12 +17,6 @@ angular.module('sc2')
             $scope.tracks = tracks
     , 300)
 
-    $scope.addTrackFromLink = (link) ->
-        $sc.resolve(link).then (sound) ->
-            if sound.kind is 'track'
-                $scope.playlist.push sound
-                $scope.search.url = ''
-
     Mousetrap.bind 'space', (e) ->
         e.preventDefault()
         $scope.player.togglePause()
