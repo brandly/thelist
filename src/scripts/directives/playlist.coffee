@@ -1,6 +1,8 @@
 angular.module('sc2.directives')
 
 .directive('playlist', ['$sc', '$interval', ($sc, $interval) ->
+    states = ['uninitialised', 'loading', 'error', 'loaded']
+
     return {
         link: (scope, element, attrs) ->
             scope.playlist = playlist = []
@@ -31,10 +33,13 @@ angular.module('sc2.directives')
                         # update @current.position every second
                         @current.interval = $interval =>
                             @current.position = @current.sound.position
-                            if @current.sound.position is @current.sound.duration
-                                console.log 'FAILS', @current.sound.failures
-                                console.log 'DURATION', @current.sound.duration
-                                console.log 'POSITION', @current.sound.position
+                            if states[@current.sound.readyState] is 'loading'
+                                # display loading indicator?
+                                return
+                            else if states[@current.sound.readyState] is 'error'
+                                @current.track.error = true
+                                @next()
+                            else if @current.sound.position is @current.sound.duration
                                 @next()
                         , 1000
                     , (error) ->
