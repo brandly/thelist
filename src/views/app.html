@@ -1,7 +1,7 @@
 
 <div class="page" playlist>
   <div class="playlist">
-    <div class="player" style="background-image: url({{getBiggerArt(player.current.track.artwork_url, '300')}})">
+    <div class="player" style="background-image: url({{player.current.track.artwork_url | resizeArt:'300'}})">
       <div class="media'" ng-show="player.current.sound">
         <a class="center prev-button" ng-click="player.prev()">
           <i class="icon-previous"></i>

@@ -17,10 +17,6 @@ angular.module('sc2')
             $scope.tracks = tracks
     , 300)
 
-    $scope.getBiggerArt = (url, size) ->
-        return '' unless url
-        url.replace 'large.jpg', "t#{size}x#{size}.jpg"
-
     $scope.addTrackFromLink = (link) ->
         $sc.resolve(link).then (track) ->
             $scope.playlist.push track
