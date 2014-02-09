@@ -26,10 +26,7 @@
         <i ng-show="$index === player.current.index && !player.current.sound.paused" class="icon-play"></i>
       </li>
       <li class="track">
-        <form ng-submit="addTrackFromLink(search.url)" class="track-from-link">
-          <input type="text" ng-model="search.url" placeholder="have a SoundCloud link?">
-          <input type="submit" value="Add">
-        </form>
+        <div link-to-track></div>
       </li>
     </ul>
   </div>
