@@ -10,12 +10,9 @@ minify = require('gulp-minify-css'),
 path = require('path'),
 express = require('express'),
 
-build = './build/';
+build = gutil.env.gh ? '../sc2-gh-pages/' : './build/';
 
 gulp.task('build', function () {
-    if (gutil.env.gh) {
-        build = '../sc2-gh-pages/'
-    }
 
     // Coffee
     gulp.src('src/scripts/**/*.coffee')
@@ -54,6 +51,7 @@ gulp.task('build', function () {
     gulp.src('src/styles/icons/*')
         .pipe(gulp.dest(build + 'icons/'));
 
+    // Images
     gulp.src('src/styles/img/*')
         .pipe(gulp.dest(build + 'img/'));
 });
