@@ -54,6 +54,10 @@ gulp.task('build', function () {
     // Images
     gulp.src('src/styles/img/*')
         .pipe(gulp.dest(build + 'img/'));
+
+    // Favicons
+    gulp.src('src/styles/favicons/*')
+        .pipe(gulp.dest(build));
 });
 
 gulp.task('default', function () {

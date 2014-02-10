@@ -15,7 +15,6 @@ angular.module('sc2.directives')
                     return $scope.$apply ->
                         $scope.tracks = []
 
-
                 $scope.$apply ->
                     $scope.loading = true
                 $sc.searchTracks $scope.search.query, 10
