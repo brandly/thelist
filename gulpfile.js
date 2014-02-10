@@ -7,6 +7,8 @@ sass = require('gulp-sass'),
 gutil = require('gulp-util'),
 uglify = require('gulp-uglify'),
 minify = require('gulp-minify-css'),
+path = require('path'),
+express = require('express'),
 
 build = './build/';
 
@@ -62,6 +64,14 @@ gulp.task('default', function () {
     if (!gutil.env.gh) {
         gulp.watch(['src/**'], function () {
             gulp.run('build');
+        });
+
+        var
+        app = express(),
+        port = 8888;
+        app.use(express.static(path.resolve(build)));
+        app.listen(port, function() {
+            gutil.log('Listening on', port);
         });
     }
 });
