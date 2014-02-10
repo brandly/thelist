@@ -1,11 +1,6 @@
 angular.module('sc2')
 
 .controller('MainCtrl', ['$scope', ($scope) ->
-    $scope.tracks = []
-    $scope.search =
-        query: ''
-        url: ''
-
     Mousetrap.bind 'space', (e) ->
         e.preventDefault()
         $scope.player.togglePause()

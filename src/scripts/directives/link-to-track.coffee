@@ -6,6 +6,9 @@ angular.module('sc2.directives')
         scope: true
         templateUrl: 'views/link-to-track.html'
         controller: ['$scope', '$sc', ($scope, $sc) ->
+            $scope.search =
+                url: ''
+
             $scope.loading = false
             $scope.addTrackFromLink = (link) ->
                 $scope.loading = true
