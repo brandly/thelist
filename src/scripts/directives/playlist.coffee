@@ -1,6 +1,6 @@
 angular.module('sc2.directives')
 
-.directive('playlist', ['$sc', '$interval', ($sc, $interval) ->
+.directive('playlist', ['$sc', '$interval', '$rootScope', ($sc, $interval, $rootScope) ->
     states = ['uninitialised', 'loading', 'error', 'loaded']
 
     return {
@@ -22,6 +22,7 @@ angular.module('sc2.directives')
                     @current =
                         track: playlist[index]
                         index: index
+                    $rootScope.trackTitle = @current.track.title
                     $sc.streamTrack(@current.track.id).then (sound) =>
                         console.log 'GOT SOUND', sound
                         # maybe we've moved on already
@@ -73,5 +74,6 @@ angular.module('sc2.directives')
                     $interval.cancel @current.interval
                     @current.sound?.stop()
                     @current = {}
+                    $rootScope.trackTitle = null
     }
 ])

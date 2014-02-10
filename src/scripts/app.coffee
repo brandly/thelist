@@ -20,4 +20,8 @@ angular.module('sc2', dependencies).config(['$stateProvider', '$urlRouterProvide
 
         $urlRouterProvider.otherwise '/'
 
+]).run(['$rootScope', ($rootScope) ->
+    $rootScope.$watch 'trackTitle', (title) ->
+        suffix = if title? then " | #{title}" else ''
+        $rootScope.pageTitle = "the list#{suffix}"
 ])
