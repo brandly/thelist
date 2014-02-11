@@ -10,7 +10,11 @@ minify = require('gulp-minify-css'),
 path = require('path'),
 express = require('express'),
 
-build = gutil.env.gh ? '../sc2-gh-pages/' : './build/';
+build = gutil.env.gh ? '../sc2-gh-pages/' : './build/',
+
+// don't minify/uglify unless we're heading to github
+uglify = gutil.env.gh ? uglify : gutil.noop,
+minify = gutil.env.gh ? minify : gutil.noop;
 
 gulp.task('build', function () {
 
@@ -18,7 +22,7 @@ gulp.task('build', function () {
     gulp.src('src/scripts/**/*.coffee')
         .pipe(coffee({bare: true}))
         .on('error', gutil.log)
-        .pipe(gutil.env.gh ? uglify() : gutil.noop())
+        .pipe(uglify())
         .pipe(concat('app.js'))
         .pipe(gulp.dest(build));
 
@@ -27,7 +31,7 @@ gulp.task('build', function () {
         .pipe(htmlbuild({
             js: function (files, callback) {
                 gulp.src(files)
-                    .pipe(gutil.env.gh ? uglify() : gutil.noop())
+                    .pipe(uglify())
                     .pipe(concat('lib.js'))
                     .pipe(gulp.dest(build));
                 callback(null, ['lib.js']);
@@ -43,7 +47,7 @@ gulp.task('build', function () {
     gulp.src('src/styles/**/*.scss')
         .pipe(sass())
         .on('error', gutil.log)
-        .pipe(gutil.env.gh ? minify() : gutil.noop())
+        .pipe(minify())
         .pipe(concat('the.css'))
         .pipe(gulp.dest(build));
 
