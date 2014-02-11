@@ -5,6 +5,7 @@ $track-height: 100px;
 $player-height: 300px;
 $page-width: 900px;
 $soft-border: 1px solid #ddd;
+$error-red: #ED4337;
 
 * {
     box-sizing: border-box;
@@ -108,7 +109,7 @@ body {
     }
 
     .error {
-        color: #ED4337;
+        color: $error-red;
     }
 
     .track:first-child {
@@ -125,11 +126,15 @@ body {
             display: none;
         }
 
-        input[type=text] {
+        .sc-link {
             border: 0;
             outline: none;
             color: $main-font-color;
             width: 100%;
+        }
+
+        .error {
+            color: $error-red;
         }
     }
 }
