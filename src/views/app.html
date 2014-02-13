@@ -4,16 +4,16 @@
     <div class="player" style="background-image: url({{player.current.track.artwork_url | resizeArt:'300'}})">
       <div class="media'" ng-show="player.current.sound">
         <a class="center prev-button" ng-click="player.prev()">
-          <i class="icon-previous"></i>
+          <i class="fa fa-step-backward"></i>
         </a>
         <a class="center play-button" ng-click="player.play()" ng-show="player.current.sound.paused">
-          <i class="icon-play"></i>
+          <i class="fa fa-play"></i>
         </a>
         <a class="center pause-button" ng-click="player.pause()" ng-hide="player.current.sound.paused">
-          <i class="icon-pause"></i>
+          <i class="fa fa-pause"></i>
         </a>
         <a class="center skip-button" ng-click="player.next()">
-          <i class="icon-skip"></i>
+          <i class="fa fa-step-forward"></i>
         </a>
       </div>
       <div class="seek" seek ng-show="player.current.position">
@@ -22,7 +22,7 @@
     </div>
     <ul class="queue">
       <li ng-repeat="track in playlist track by $index" title="Play track" class="track" ng-click="player.playTrack($index)" ng-class="{error: track.error}">
-        <i ng-show="$index === player.current.index && !player.current.sound.paused" class="icon-play"></i>
+        <i ng-show="$index === player.current.index && !player.current.sound.paused" class="fa fa-play"></i>
         {{track.title}}
       </li>
       <li class="track">
