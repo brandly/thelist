@@ -6,7 +6,16 @@ angular.module('sc2.directives')
     return {
         link: (scope, element, attrs) ->
             scope.playlist = playlist = []
-            scope.player =
+            scope.playlist.remove = (index, e) ->
+                if player.current.index is index
+                    player.stop()
+                else if player.current.index > index
+                    player.current.index -= 1
+
+                @splice index, 1
+                e.stopPropagation() if e
+
+            scope.player = player =
                 current: {}
                 play: ->
                     if @current.sound?.paused
