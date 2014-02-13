@@ -24,6 +24,7 @@
       <li ng-repeat="track in playlist track by $index" title="Play track" class="track" ng-click="player.playTrack($index)" ng-class="{error: track.error}">
         <i ng-show="$index === player.current.index" class="fa" ng-class="player.current.sound.paused ? 'fa-volume-off' : 'fa-volume-up'"></i>
         {{track.title}}
+        <i class="fa fa-times" ng-click="playlist.remove($index, $event)" title="Remove track"></i>
       </li>
       <li class="track">
         <div link-to-track></div>

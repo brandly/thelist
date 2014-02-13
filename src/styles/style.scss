@@ -107,9 +107,22 @@ body {
         white-space: nowrap;
         position: relative;
 
-        .fa-play {
-            font-size: 12px;
+        // remove track button
+        .fa-times {
+            position: absolute;
+            right: 2px;
+            top: 8px;
+            background-color: white;
+            box-shadow: -3px 0 5px white;
+            opacity: 0;
         }
+
+        &:hover {
+            .fa-times {
+                opacity: 1;
+            }
+        }
+
     }
 
     .error {
