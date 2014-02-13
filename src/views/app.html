@@ -22,8 +22,8 @@
     </div>
     <ul class="queue">
       <li ng-repeat="track in playlist track by $index" title="Play track" class="track" ng-click="player.playTrack($index)" ng-class="{error: track.error}">
-        {{track.title}}
         <i ng-show="$index === player.current.index && !player.current.sound.paused" class="icon-play"></i>
+        {{track.title}}
       </li>
       <li class="track">
         <div link-to-track></div>

@@ -106,6 +106,10 @@ body {
         text-overflow: ellipsis;
         white-space: nowrap;
         position: relative;
+
+        .icon-play {
+            font-size: 12px;
+        }
     }
 
     .error {
@@ -114,11 +118,6 @@ body {
 
     .track:first-child {
         border-top: $soft-border;
-    }
-
-    .icon-play {
-        position: absolute;
-        right: 0;
     }
 
     .track-from-link {
