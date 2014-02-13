@@ -17,7 +17,7 @@
         </a>
       </div>
       <div class="seek" seek ng-show="player.current.position">
-        <div class="progress" style="width: {{player.current.position / player.current.sound.duration * 100}}%;"></div>
+        <div class="progress" style="width: {{player.current.position / player.current.sound.durationEstimate * 100}}%;"></div>
       </div>
     </div>
     <ul class="queue">
