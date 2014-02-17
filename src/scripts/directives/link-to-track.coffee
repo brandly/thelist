@@ -24,12 +24,15 @@ angular.module('sc2.directives')
             $scope.addTrackFromLink = (link) ->
                 $scope.loading = true
                 $sc.resolve(link).then (sound) ->
-                    if sound?.kind is 'track'
-                        $scope.playlist.add sound
-                        $scope.search.url = ''
-                    else
+                    if sound?.kind isnt 'track'
                         setError
                             message: 'Not a track'
+                    else if not sound.streamable
+                        setError
+                            message: "Can't stream track :("
+                    else
+                        $scope.playlist.add sound
+                        $scope.search.url = ''
                 , (e) ->
                     setError e
                 .finally ->
