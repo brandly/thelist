@@ -18,6 +18,9 @@ angular.module('sc2.services')
         getTracks: (params) ->
             @get '/tracks', params
 
+        getTrackById: (id) ->
+            @get "/tracks/#{id}"
+
         searchTracks: (query, limit) ->
             @getTracks
                 q: query
