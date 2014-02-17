@@ -25,7 +25,7 @@ angular.module('sc2.directives')
                 $scope.loading = true
                 $sc.resolve(link).then (sound) ->
                     if sound?.kind is 'track'
-                        $scope.playlist.push sound
+                        $scope.playlist.add sound
                         $scope.search.url = ''
                     else
                         setError

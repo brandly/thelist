@@ -6,6 +6,9 @@ angular.module('sc2.directives')
     return {
         link: (scope, element, attrs) ->
             scope.playlist = playlist = []
+            scope.playlist.add = (track) ->
+                @push track
+
             scope.playlist.remove = (index, e) ->
                 if player.current.index is index
                     player.stop()
@@ -14,6 +17,10 @@ angular.module('sc2.directives')
 
                 @splice index, 1
                 e.stopPropagation() if e
+
+            scope.playlist.clear = ->
+                @length = 0
+                player.stop()
 
             scope.player = player =
                 current: {}
