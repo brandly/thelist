@@ -18,8 +18,9 @@ angular.module('sc2.directives')
             scope.player = player =
                 current: {}
                 play: ->
-                    if @current.sound?.paused
-                        @current.sound.play()
+                    if @current.sound?
+                        if @current.sound.paused
+                            @current.sound.play()
                     else if playlist.length
                         @playTrack 0
 
@@ -27,6 +28,9 @@ angular.module('sc2.directives')
                     @current.sound?.togglePause()
 
                 playTrack: (index) ->
+                    if index is @current.index
+                        return @seek 0
+
                     @stop()
                     @current =
                         track: playlist[index]
@@ -75,9 +79,11 @@ angular.module('sc2.directives')
                     @playTrack playlist.length - 1
 
                 seek: (progress) ->
+                    return unless @current.sound?
+
                     position = progress * @current.sound.duration
                     @current.position = position
-                    @current.sound?.setPosition position
+                    @current.sound.setPosition position
 
                 stop: ->
                     $interval.cancel @current.interval
