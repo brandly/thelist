@@ -33,8 +33,7 @@ angular.module('sc2.directives')
                     else
                         $scope.playlist.add sound
                         $scope.search.url = ''
-                , (e) ->
-                    setError e
+                , setError
                 .finally ->
                     $scope.loading = false
         ]
