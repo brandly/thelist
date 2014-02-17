@@ -10,7 +10,7 @@ minify = require('gulp-minify-css'),
 path = require('path'),
 express = require('express'),
 
-build = gutil.env.gh ? '../sc2-gh-pages/' : './build/';
+build = gutil.env.gh ? '../gh-pages/' : './build/';
 
 // don't minify/uglify unless we're heading to github
 if (!gutil.env.gh) {
