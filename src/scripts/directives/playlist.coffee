@@ -22,6 +22,7 @@ angular.module('sc2.directives')
 
     playlist = []
     playlist.add = (track) ->
+        return unless track.streamable
         @push track
         save()
 
