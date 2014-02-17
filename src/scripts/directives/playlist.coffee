@@ -16,6 +16,9 @@ angular.module('sc2.directives')
             trackIds.forEach (id, index) ->
                 $sc.getTrackById(id).then (track) ->
                     playlist[index] = track
+                , (e) ->
+                    playlist[index] =
+                        error: e
 
     playlist = []
     playlist.add = (track) ->
