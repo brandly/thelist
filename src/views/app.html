@@ -4,7 +4,6 @@
     <div class="player">
       <img class="artwork" ng-show="player.current.track.artwork_url" ng-src="{{player.current.track.artwork_url | resizeArt:'300'}}" alt="">
       <div class="media" ng-show="player.current.sound">
-        <div class="backdrop"></div>
         <a class="center button prev-button" ng-click="player.prev()">
           <i class="fa fa-step-backward"></i>
         </a>
