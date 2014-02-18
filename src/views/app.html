@@ -18,10 +18,14 @@
           <i class="fa fa-step-forward"></i>
         </a>
       </div>
-      <div class="seek" seek ng-show="player.current.position">
-        <div class="full-length">
-          <div class="progress" style="width: {{player.current.position / player.current.sound.durationEstimate * 100}}%;"></div>
+      <div class="song-status" ng-show="player.current.position">
+        <div class="position">{{player.current.position | playTime}}</div>
+        <div class="seek" seek>
+          <div class="full-length">
+            <div class="progress" style="width: {{player.current.position / player.current.sound.durationEstimate * 100}}%;"></div>
+          </div>
         </div>
+        <div class="duration">{{player.current.sound.durationEstimate | playTime}}</div>
       </div>
     </div>
     <ul class="queue">
