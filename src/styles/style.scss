@@ -50,11 +50,20 @@ body {
                 @include filter( blur(5px) );
                 opacity: .8;
             }
+
+            .media {
+                opacity: 1;
+            }
+
+            .seek {
+                opacity: 1;
+            }
         }
 
         .media {
             width: 100%;
             height: 100%;
+            opacity: 0;
         }
 
         .center {
@@ -96,15 +105,27 @@ body {
 
     .seek {
         height: 10px;
-        width: 100%;
+        width: 238px;
         position: absolute;
-        bottom: 0;
+        bottom: 5px;
+        left: 31px;
         cursor: pointer;
+        opacity: 0;
+
+        .full-length {
+            width: 100%;
+            height: 20%;
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            background-color: lighten($main-font-color, 10%);
+        }
 
         .progress {
+            background-color: white;
+            margin: auto;
             height: 100%;
-            background-color: $main-font-color;
-            pointer-events: none; // let them pass through to .seek
+            float: left;
         }
     }
 

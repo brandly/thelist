@@ -3,7 +3,7 @@
   <div class="playlist">
     <div class="player">
       <img ng-src="{{player.current.track.artwork_url | resizeArt:'300'}}" alt="">
-      <div class="media'" ng-show="player.current.sound">
+      <div class="media" ng-show="player.current.sound">
         <a class="center button prev-button" ng-click="player.prev()">
           <i class="fa fa-step-backward"></i>
         </a>
@@ -18,7 +18,9 @@
         </a>
       </div>
       <div class="seek" seek ng-show="player.current.position">
-        <div class="progress" style="width: {{player.current.position / player.current.sound.durationEstimate * 100}}%;"></div>
+        <div class="full-length">
+          <div class="progress" style="width: {{player.current.position / player.current.sound.durationEstimate * 100}}%;"></div>
+        </div>
       </div>
     </div>
     <ul class="queue">
