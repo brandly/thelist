@@ -45,8 +45,8 @@ body {
         position: relative;
         border: 1px solid #eee;
 
-        img {
-            &:hover {
+        &:hover {
+            img {
                 @include filter( blur(5px) );
                 opacity: .8;
             }
