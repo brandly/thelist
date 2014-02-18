@@ -1,0 +1,7 @@
+<div>
+  <form ng-hide="loading" ng-submit="addTrackFromLink(search.url)" class="track-from-link"x>
+    <input type="text" ng-model="search.url" placeholder="have a SoundCloud link?" class="sc-link" ng-class="{error: error}">
+    <input type="submit" value="Add">
+  </form>
+  <div ng-show="loading" class="spinner"></div>
+</div>

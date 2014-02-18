@@ -7,19 +7,24 @@ sass = require('gulp-sass'),
 gutil = require('gulp-util'),
 uglify = require('gulp-uglify'),
 minify = require('gulp-minify-css'),
+path = require('path'),
+express = require('express'),
 
-build = './build/';
+build = gutil.env.gh ? './gh-pages/' : './build/';
+
+// don't minify/uglify unless we're heading to github
+if (!gutil.env.gh) {
+    uglify = gutil.noop;
+    minify = gutil.noop;
+}
 
 gulp.task('build', function () {
-    if (gutil.env.gh) {
-        build = '../sc2-gh-pages/'
-    }
 
     // Coffee
     gulp.src('src/scripts/**/*.coffee')
         .pipe(coffee({bare: true}))
         .on('error', gutil.log)
-        .pipe(gutil.env.gh ? uglify() : gutil.noop())
+        .pipe(uglify())
         .pipe(concat('app.js'))
         .pipe(gulp.dest(build));
 
@@ -28,7 +33,7 @@ gulp.task('build', function () {
         .pipe(htmlbuild({
             js: function (files, callback) {
                 gulp.src(files)
-                    .pipe(gutil.env.gh ? uglify() : gutil.noop())
+                    .pipe(uglify())
                     .pipe(concat('lib.js'))
                     .pipe(gulp.dest(build));
                 callback(null, ['lib.js']);
@@ -44,7 +49,7 @@ gulp.task('build', function () {
     gulp.src('src/styles/**/*.scss')
         .pipe(sass())
         .on('error', gutil.log)
-        .pipe(gutil.env.gh ? minify() : gutil.noop())
+        .pipe(minify())
         .pipe(concat('the.css'))
         .pipe(gulp.dest(build));
 
@@ -52,8 +57,13 @@ gulp.task('build', function () {
     gulp.src('src/styles/icons/*')
         .pipe(gulp.dest(build + 'icons/'));
 
+    // Images
     gulp.src('src/styles/img/*')
         .pipe(gulp.dest(build + 'img/'));
+
+    // Favicons
+    gulp.src('src/styles/favicons/*')
+        .pipe(gulp.dest(build));
 });
 
 gulp.task('default', function () {
@@ -62,6 +72,14 @@ gulp.task('default', function () {
     if (!gutil.env.gh) {
         gulp.watch(['src/**'], function () {
             gulp.run('build');
+        });
+
+        var
+        app = express(),
+        port = 8888;
+        app.use(express.static(path.resolve(build)));
+        app.listen(port, function() {
+            gutil.log('Listening on', port);
         });
     }
 });

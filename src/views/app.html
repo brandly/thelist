@@ -5,46 +5,32 @@
       <img ng-src="{{player.current.track.artwork_url | resizeArt:'300'}}" alt="">
       <div class="media'" ng-show="player.current.sound">
         <a class="center button prev-button" ng-click="player.prev()">
-          <i class="icon-previous"></i>
+          <i class="fa fa-step-backward"></i>
         </a>
         <a class="center button play-button" ng-click="player.play()" ng-show="player.current.sound.paused">
-          <i class="icon-play"></i>
+          <i class="fa fa-play"></i>
         </a>
         <a class="center button pause-button" ng-click="player.pause()" ng-hide="player.current.sound.paused">
-          <i class="icon-pause"></i>
+          <i class="fa fa-pause"></i>
         </a>
         <a class="center button skip-button" ng-click="player.next()">
-          <i class="icon-skip"></i>
+          <i class="fa fa-step-forward"></i>
         </a>
       </div>
       <div class="seek" seek ng-show="player.current.position">
-        <div class="progress" style="width: {{player.current.position / player.current.sound.duration * 100}}%;"></div>
+        <div class="progress" style="width: {{player.current.position / player.current.sound.durationEstimate * 100}}%;"></div>
       </div>
     </div>
     <ul class="queue">
       <li ng-repeat="track in playlist track by $index" title="Play track" class="track" ng-click="player.playTrack($index)" ng-class="{error: track.error}">
+        <i ng-show="$index === player.current.index" class="fa" ng-class="player.current.sound.paused ? 'fa-volume-off' : 'fa-volume-up'"></i>
         {{track.title}}
-        <i ng-show="$index === player.current.index && !player.current.sound.paused" class="icon-play"></i>
+        <i class="fa fa-times" ng-click="playlist.remove($index, $event)" title="Remove track"></i>
       </li>
       <li class="track">
-        <form ng-submit="addTrackFromLink(search.url)" class="track-from-link">
-          <input type="text" ng-model="search.url" placeholder="have a SoundCloud link?">
-          <input type="submit" value="Add">
-        </form>
+        <div link-to-track></div>
       </li>
     </ul>
   </div>
-  <div class="song-finder">
-    <input type="search" ng-model="search.query" placeholder="search" autofocus>
-    <ul class="track-list">
-      <li ng-repeat="track in tracks" class="track">
-        <img ng-if="track.artwork_url" class="artwork" title="Add to the list" ng-src="{{track.artwork_url}}" ng-click="playlist.push(track)">
-        <div class="content" ng-class="{'no-art': !track.artwork_url}" style="background-image: url({{track.waveform_url}})">
-          <h3 class="title" title="Add to the list" ng-click="playlist.push(track)">{{track.title}}</h3>
-          <a class="username" href="{{track.user.permalink_url}}" title="View user on SoundCloud" target="_blank">{{track.user.username}}</a>
-          <a class="link" href="{{track.permalink_url}}"title="View track on SoundCloud" target="_blank"><img src="img/soundcloud_logo_black.png"></a>
-        </div>
-      </li>
-    </ul>
-  </div>
+  <div song-finder></div>
 </div>

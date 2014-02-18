@@ -5,6 +5,7 @@ $track-height: 100px;
 $player-height: 300px;
 $page-width: 900px;
 $soft-border: 1px solid #ddd;
+$error-red: #ED4337;
 
 @mixin filter($value) {
   -webkit-filter: $value;
@@ -109,10 +110,15 @@ body {
 
     .queue {
         margin: 20px 0;
+
+        .spinner {
+            margin: 7px auto;
+        }
     }
 
     .track {
         font-size: 16px;
+        min-height: 32px;
         line-height: 32px;
         padding: 0 10px;
         border-bottom: $soft-border;
@@ -120,19 +126,31 @@ body {
         text-overflow: ellipsis;
         white-space: nowrap;
         position: relative;
+
+        // remove track button
+        .fa-times {
+            position: absolute;
+            right: 2px;
+            top: 8px;
+            background-color: white;
+            box-shadow: -3px 0 5px white;
+            opacity: 0;
+        }
+
+        &:hover {
+            .fa-times {
+                opacity: 1;
+            }
+        }
+
     }
 
     .error {
-        color: red;
+        color: $error-red;
     }
 
     .track:first-child {
         border-top: $soft-border;
-    }
-
-    .icon-play {
-        position: absolute;
-        right: 0;
     }
 
     .track-from-link {
@@ -140,11 +158,15 @@ body {
             display: none;
         }
 
-        input[type=text] {
+        .sc-link {
             border: 0;
             outline: none;
             color: $main-font-color;
             width: 100%;
+        }
+
+        .error {
+            color: $error-red;
         }
     }
 }
@@ -211,6 +233,18 @@ body {
             margin-left: 0;
         }
     }
+
+    .spinner {
+        margin: 40px auto;
+    }
+
+    .not-streamable {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        font-size: 24px;
+        color: $error-red;
+    }
 }
 
 footer {
@@ -232,4 +266,10 @@ footer {
             opacity: .8;
         }
     }
+}
+
+.spinner {
+    background-image: url('img/spinner.gif');
+    width: 16px;
+    height: 16px;
 }
