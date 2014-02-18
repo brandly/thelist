@@ -1,23 +1,31 @@
 
 <div class="page" playlist>
   <div class="playlist">
-    <div class="player" style="background-image: url({{player.current.track.artwork_url | resizeArt:'300'}})">
-      <div class="media'" ng-show="player.current.sound">
-        <a class="center prev-button" ng-click="player.prev()">
+    <div class="player">
+      <img class="artwork" ng-show="player.current.track.artwork_url" ng-src="{{player.current.track.artwork_url | resizeArt:'300'}}" alt="">
+      <div class="media" ng-show="player.current.sound">
+        <div class="backdrop"></div>
+        <a class="center button prev-button" ng-click="player.prev()">
           <i class="fa fa-step-backward"></i>
         </a>
-        <a class="center play-button" ng-click="player.play()" ng-show="player.current.sound.paused">
+        <a class="center button play-button" ng-click="player.play()" ng-show="player.current.sound.paused">
           <i class="fa fa-play"></i>
         </a>
-        <a class="center pause-button" ng-click="player.pause()" ng-hide="player.current.sound.paused">
+        <a class="center button pause-button" ng-click="player.pause()" ng-hide="player.current.sound.paused">
           <i class="fa fa-pause"></i>
         </a>
-        <a class="center skip-button" ng-click="player.next()">
+        <a class="center button skip-button" ng-click="player.next()">
           <i class="fa fa-step-forward"></i>
         </a>
       </div>
-      <div class="seek" seek ng-show="player.current.position">
-        <div class="progress" style="width: {{player.current.position / player.current.sound.durationEstimate * 100}}%;"></div>
+      <div class="song-status" ng-show="player.current.position">
+        <div class="position">{{player.current.position | playTime}}</div>
+        <div class="seek" seek>
+          <div class="full-length">
+            <div class="progress" style="width: {{player.current.position / player.current.sound.durationEstimate * 100}}%;"></div>
+          </div>
+        </div>
+        <div class="duration">{{player.current.sound.durationEstimate | playTime}}</div>
       </div>
     </div>
     <ul class="queue">
