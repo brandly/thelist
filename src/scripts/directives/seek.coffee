@@ -4,7 +4,8 @@ angular.module('sc2.directives')
     return {
         link: (scope, element, attrs) ->
             element.on 'click', (e) ->
-                progress = e.offsetX / e.target?.offsetWidth
+                x = e.offsetX or e.layerX
+                progress = x / e.target?.offsetWidth
                 if progress
                     scope.player.seek progress
     }
