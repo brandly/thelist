@@ -62,7 +62,7 @@ body {
 
         &:hover {
             .artwork {
-                @include filter( blur(15px) );
+                @include filter( blur(8px) );
                 filter: url(img/blur.svg#blur);
                 opacity: .8;
                 width: 240px;
