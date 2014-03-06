@@ -7,6 +7,7 @@ angular.module('sc2.directives')
                 x = e.offsetX or e.layerX
                 progress = x / e.target?.offsetWidth
                 if progress
-                    scope.player.seek progress
+                    scope.$apply ->
+                        scope.player.seek progress
     }
 ])
