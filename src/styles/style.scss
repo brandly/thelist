@@ -91,6 +91,11 @@ body {
             .song-status {
                 opacity: 1;
             }
+
+            .position, .duration, .button {
+                color: lighten($main-font-color, 10%);
+                text-shadow: none;
+            }
         }
 
         .artwork {
