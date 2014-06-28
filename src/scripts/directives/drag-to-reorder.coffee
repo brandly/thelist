@@ -29,9 +29,10 @@ angular.module('sc2.directives')
 
             dragOverHandler = (e) ->
                 e.preventDefault()
+                offsetY = e.offsetY or e.layerY
 
                 # above halfway
-                if e.offsetY < (e.toElement.offsetHeight / 2)
+                if offsetY < (@offsetHeight / 2)
                     element.removeClass droppingBelowClassName
                     element.addClass droppingAboveClassName
                 # below
