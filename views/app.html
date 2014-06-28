@@ -28,7 +28,7 @@
       </div>
     </div>
     <ul class="queue">
-      <li ng-repeat="track in playlist track by $index" title="Play track" class="track" ng-click="player.playTrack($index)" ng-class="{error: track.error}">
+      <li ng-repeat="track in playlist track by $index" title="Play track" class="track" ng-click="player.playTrack($index)" ng-class="{error: track.error}" drag-to-reorder="playlist">
         <i ng-show="$index === player.current.index" class="fa" ng-class="player.current.sound.paused ? 'fa-volume-off' : 'fa-volume-up'"></i>
         {{track.title}}
         <i class="fa fa-times" ng-click="playlist.remove($index, $event)" title="Remove track"></i>
