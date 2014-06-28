@@ -41,6 +41,8 @@ angular.module('sc2.directives')
         player.stop()
         save()
 
+    playlist.save = save
+
     player =
         current: {}
         play: ->

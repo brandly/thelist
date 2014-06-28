@@ -11,6 +11,9 @@ angular.module('sc2')
     Mousetrap.bind 'shift+left', ->
         $scope.$apply -> $scope.player.prev()
 
+    $scope.$on 'dragToReorder.reordered', ->
+        $scope.playlist.save()
+
     $scope.$on '$destroy', ->
         Mousetrap.unbind 'space'
         Mousetrap.unbind 'shift+right'

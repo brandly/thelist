@@ -3,6 +3,8 @@ angular.module('sc2.directives')
 .directive('dragToReorder', [ ->
     return {
         link: (scope, element, attrs) ->
+            unless scope[attrs.dragToReorder]?
+                throw 'Must specify the list to reorder'
             ###
                 drag stuff
             ###
@@ -39,21 +41,61 @@ angular.module('sc2.directives')
 
             dropHandler = (e) ->
                 e.preventDefault()
-                droppingData = parseInt e.dataTransfer.getData('text/plain'), 10
+                droppedItemIndex = parseInt e.dataTransfer.getData('text/plain'), 10
+                theList = scope[attrs.dragToReorder]
 
-                side = null
+                newIndex = null
+                # dropping item above us
                 if element.hasClass droppingAboveClassName
-                    side = 'above'
-                else
-                    side = 'below'
+                    if droppedItemIndex < scope.$index
+                        # dropped item was already above us,
+                        # so now it'll be one index above
+                        newIndex = scope.$index - 1
+                    else
+                        # since it's moving from below to above us,
+                        # it'll need to take our index
+                        newIndex = scope.$index
 
-                # TODO: rearrange the array
-                console.log droppingData, 'dropping', side, scope.$index
+                # dropping item below us
+                else
+                    if droppedItemIndex < scope.$index
+                        # moving above to below
+                        newIndex = scope.$index
+                    else
+                        # still below
+                        newIndex = scope.$index + 1
+
+                console.log 'moving item', droppedItemIndex, 'to', newIndex
+
+                itemToMove = theList[droppedItemIndex]
+                # moving down the list
+                if newIndex > droppedItemIndex
+                    # move all items below it...
+                    for i in [droppedItemIndex...newIndex] by 1
+                        # ...up one spot
+                        theList[i] = theList[i + 1]
+
+                # moving up the list
+                else if newIndex < droppedItemIndex
+                    for i in [droppedItemIndex...newIndex] by -1
+                        theList[i] = theList[i - 1]
+
+                # put it in its new home
+                theList[newIndex] = itemToMove
+                # let angular rearrange the DOM
+                scope.$apply ->
+                    # and let em know
+                    scope.$emit 'dragToReorder.reordered',
+                        array: theList
+                        item: itemToMove
+                        from: droppedItemIndex
+                        to: newIndex
 
                 # cleanup
                 element.removeClass droppingClassName
                 element.removeClass droppingAboveClassName
                 element.removeClass droppingBelowClassName
+                element.off 'drop', dropHandler
 
             element.on 'dragenter', (e) ->
                 # make sure we're not dropping on the dragged element
