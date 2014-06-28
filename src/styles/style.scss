@@ -239,6 +239,14 @@ body {
             color: lighten($main-font-color, 50%);
         }
 
+        &.dropping-above {
+            padding-top: 5px;
+        }
+
+        &.dropping-below {
+            padding-bottom: 5px;
+        }
+
     }
 
     .error {
