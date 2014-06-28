@@ -107,6 +107,8 @@ angular.module('sc2.directives')
 
             element.on 'dragleave', (e) ->
                 element.removeClass droppingClassName
+                element.removeClass droppingAboveClassName
+                element.removeClass droppingBelowClassName
                 element.off 'dragover', dragOverHandler
                 element.off 'drop', dropHandler
 
