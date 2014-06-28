@@ -235,6 +235,10 @@ body {
             }
         }
 
+        &.dragging {
+            color: lighten($main-font-color, 50%);
+        }
+
     }
 
     .error {
