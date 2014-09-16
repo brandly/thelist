@@ -65,7 +65,6 @@ angular.module('sc2.directives')
                 index: index
             $rootScope.trackTitle = @current.track.title
             $sc.streamTrack(@current.track.id).then (sound) =>
-                console.log 'GOT SOUND', sound
                 # maybe we've moved on already
                 return unless @current.track is playlist[index]
 
