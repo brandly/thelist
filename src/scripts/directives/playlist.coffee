@@ -57,7 +57,10 @@ angular.module('sc2.directives')
 
         playTrack: (index) ->
             if index is @current.index
-                return @seek 0
+                @seek 0
+                if @current.sound.playState is 0
+                    @current.sound.play()
+                return
 
             @stop()
             @current =
