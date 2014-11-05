@@ -3,6 +3,10 @@
   "description": "play sounds with soundcloud",
   "author": "Matthew Brandly",
   "version": "0.0.1",
+  "scripts": {
+    "postinstall": "bower install",
+    "start": "gulp"
+  },
   "private": true,
   "dependencies": {
     "gulp": "~3.5.1",
