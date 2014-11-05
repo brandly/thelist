@@ -9,6 +9,7 @@ dependencies = [
     'sc2.directives'
     'ui.router'
     'mb-adaptive-backgrounds'
+    'mb-dragToReorder'
 ]
 
 angular.module('sc2', dependencies).config(['$stateProvider', '$urlRouterProvider', ($stateProvider, $urlRouterProvider) ->
