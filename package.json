@@ -19,6 +19,6 @@
     "gulp-minify-css": "~0.3.0",
     "express": "~3.4.8",
     "path": "~0.4.9",
-    "angular-adaptive-backgrounds": "^0.2.2"
+    "angular-adaptive-backgrounds": "^0.2.3"
   }
 }
