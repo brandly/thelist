@@ -8,6 +8,7 @@ dependencies = [
     'sc2.filters'
     'sc2.directives'
     'ui.router'
+    'mb-adaptive-backgrounds'
 ]
 
 angular.module('sc2', dependencies).config(['$stateProvider', '$urlRouterProvider', ($stateProvider, $urlRouterProvider) ->
